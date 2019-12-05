@@ -1,30 +1,43 @@
-import React,{useEffect} from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import {connect} from "react-redux";
-import {getAllProducts} from "./redux/productsReducer";
+import {createNewProduct, getAllProducts} from "./redux/productsReducer";
 
-const App = ({products,getAllProducts}) => {
-
-
-	useEffect(()=>{
-	if(!products.length){
-		getAllProducts('products')
+class App extends Component {
+	componentDidMount() {
+		this.props.getAllProducts('products')
 	}
-},[products,getAllProducts]);
 
-	return (
-		<div className="App">
-			<ul>
-				<li>ssds</li>
-			</ul>
-		</div>
-	);
-};
+	newProduct = ()=> {
+		const url = 'products';
+		const newProduct = {
+			name: 'bbb',
+			price: 10,
+			description: 'ccc',
+			quantityOfGoods: 20
+		};
+		this.props.createNewProduct(url, newProduct)
+	};
+
+	render() {
+
+		return (
+			<div className="App">
+				<ul>
+					<li onDoubleClick={this.newProduct}>ssds</li>
+				</ul>
+			</div>
+		);
+	}
+}
 
 export default connect(
 	state => ({
 			products: state.allProducts.products
 		}
 	),
-	{getAllProducts}
+	{
+		getAllProducts,
+		createNewProduct
+	}
 )(App);
