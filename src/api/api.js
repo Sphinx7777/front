@@ -13,8 +13,11 @@ export const productsApi = {
 	getProducts(url) {
 		return axiosInstans.get(url)
 	},
-	createProducts(url,newProduct) {
+	createProduct(url,newProduct) {
 		return axiosInstans.post(url,newProduct)
+	},
+	deleteProduct(url,id) {
+		return axiosInstans.delete(`${url}/${id}`)
 	},
 };
 
