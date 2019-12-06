@@ -6,18 +6,22 @@ const axiosInstans = axios.create({
 });
 
 
-
-
 export const productsApi = {
 
 	getProducts(url) {
 		return axiosInstans.get(url)
 	},
-	createProduct(url,newProduct) {
-		return axiosInstans.post(url,newProduct)
+
+	createProduct(url, newProduct) {
+		return axiosInstans.post(url, newProduct)
 	},
-	deleteProduct(url,id) {
+
+	deleteProduct(url, id) {
 		return axiosInstans.delete(`${url}/${id}`)
+	},
+
+	updateProduct(url, id, updateData) {
+		return axiosInstans.put(`${url}/${id}`,updateData)
 	},
 };
 
